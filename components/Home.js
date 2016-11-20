@@ -30,11 +30,9 @@ export default class Home extends Component {
 				return;
 			}
 
-			data.push(this.describeList[index]);
-
 			this.setState({
 				index: ++index,
-				data: data
+				data: data.concat(this.describeList[index])
 			})
 		}, 900);
 	}
@@ -47,12 +45,17 @@ export default class Home extends Component {
 	render() {
 		// 动画可在velocity-animate/velocity.ui.js Velocity.RegisterEffect.packagedEffects中查看，使用key值即可
 		return (
-				<div style={{textAlign:'center', paddingBottom: 50}}>
-					<h2 style={{margin:'50px 0'}}>一个简单的使用redux-react实现的demo</h2>
-					<VelocityTransitionGroup component='div' enter='transition.bounceLeftIn' leave='transition.bounceLeftOut' runOnMount='true' >
-						{this.state.data}
-					</VelocityTransitionGroup>
-				</div>
-			);
+			<div style={{textAlign:'center', paddingBottom: 50}}>
+				<h2 style={{margin:'50px 0'}}>一个简单的使用redux-react实现的demo</h2>
+				<VelocityTransitionGroup 
+					component='div' 
+					enter='transition.bounceLeftIn' 
+					leave='transition.bounceLeftOut' 
+					runOnMount='true' 
+				>
+					{this.state.data}
+				</VelocityTransitionGroup>
+			</div>
+		);
 	}
 }

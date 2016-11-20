@@ -3,7 +3,7 @@ var webpack = require('webpack')
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
-  // devtool: 'inline-source-map',
+  devtool: 'inline-source-map',
   entry: [
     'webpack-hot-middleware/client',
     './index'
@@ -22,8 +22,15 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel'],
-        exclude: /node_modules/,
-        include: __dirname
+        exclude: /(node_modules|bower_components)/,
+        query: {
+          "presets": ["es2015", "react"],
+          "env": {
+            "development": {
+              "presets": ["react-hmre"]
+            }
+          }
+        }
       },
       {
         test: /\.css$/, 
